@@ -37,3 +37,23 @@ run(optOut);
 assert(!fs.existsSync(path.join(optOut, '.aiox-core')));
 for (const d of [repo, plain, optOut]) fs.rmSync(d, { recursive: true });
 console.log('auto ok');
+
+const { installCli } = require('./install-cli.js');
+for (const [tool, skill, rules] of [
+  ['codex', '.agents/skills/caveman/SKILL.md', 'AGENTS.md'],
+  ['gemini', '.agents/skills/ponytail/SKILL.md', 'GEMINI.md'],
+  ['grok', '.grok/skills/caveman/SKILL.md', 'AGENTS.md'],
+]) {
+  const d = fs.mkdtempSync(path.join(os.tmpdir(), 'simply-coding-'));
+  fs.writeFileSync(path.join(d, rules), '# Mine\n');
+  installCli(tool, d);
+  installCli(tool, d);
+  const text = fs.readFileSync(path.join(d, rules), 'utf8');
+  assert(fs.existsSync(path.join(d, skill)));
+  assert(fs.existsSync(path.join(d, '.aiox-core/constitution.md')));
+  assert(text.startsWith('# Mine') && text.split('simply-coding:start').length === 2);
+  assert(!text.includes('`simply-coding:caveman`'));
+  fs.rmSync(d, { recursive: true });
+}
+assert(fs.existsSync(path.join(__dirname, '..', 'vendor/aiox-cli/.codex/skills/aiox-dev/SKILL.md')));
+console.log('cli ok');

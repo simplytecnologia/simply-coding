@@ -1,0 +1,7 @@
+{
+  "name": "simply-coding",
+  "version": "0.1.0",
+  "description": "Token-saving setup for AI coding tools.",
+  "license": "MIT",
+  "bin": { "simply-coding": "scripts/install-cli.js" }
+}

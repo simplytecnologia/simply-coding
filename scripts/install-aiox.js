@@ -53,4 +53,4 @@ if (require.main === module) {
   const r = install(path.join(__dirname, '..'), target);
   console.log(`AIOX: ${r.copied} files copied, ${r.skipped} existing files kept.`);
 }
-module.exports = { install, shouldAutoInstall, isUnsafeTarget };
+module.exports = { install, copyNew, shouldAutoInstall, isUnsafeTarget };

@@ -4,7 +4,7 @@
 
 **Spend fewer tokens. Keep the quality.**
 
-A Claude Code plugin that bundles four open-source projects into one install.
+A Claude Code plugin, also available for Codex, Gemini CLI and Grok Build, that bundles four open-source projects into one install.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-8A2BE2)
@@ -62,6 +62,21 @@ Caveman and Ponytail apply to every new session. In a Git project, AIOX is copie
 The `aiox` CLI and AIOX hooks are not included.
 
 </details>
+
+## 🤖 Other AI tools
+
+Run one command inside your project folder. It requires [Node.js](https://nodejs.org).
+
+| Tool | Command |
+|---|---|
+| **Codex** | `npx github:simplytecnologia/simply-coding codex` |
+| **Gemini CLI** | `npx github:simplytecnologia/simply-coding gemini` |
+| **Grok Build** | `npx github:simplytecnologia/simply-coding grok` |
+
+The command copies the skills and AIOX, and adds the token-saving rules to `AGENTS.md` (Codex, Grok) or `GEMINI.md` (Gemini). Existing files are never overwritten. Run it once per project, and restart the tool afterwards.
+
+> [!NOTE]
+> Codex, Gemini CLI and Grok Build support is new. Only the file installation has been tested, not sessions inside those tools. AIOX automation is partial outside Claude Code.
 
 ## 📈 Expected results
 
