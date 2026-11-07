@@ -34,14 +34,23 @@ function install(root, target) {
   return result;
 }
 
+function shouldAutoInstall(target) {
+  return fs.existsSync(path.join(target, '.git'))
+    && !fs.existsSync(path.join(target, '.aiox-core'))
+    && !fs.existsSync(path.join(target, '.enxuto-sem-aiox'));
+}
+
+function isUnsafeTarget(target) {
+  return target === path.parse(target).root || target === require('os').homedir();
+}
+
 if (require.main === module) {
   const target = path.resolve(process.argv[2] || process.cwd());
-  const home = require('os').homedir();
-  if (target === path.parse(target).root || target === home) {
+  if (isUnsafeTarget(target)) {
     console.error(`Refusing to install into ${target}. Open a project folder.`);
     process.exit(1);
   }
   const r = install(path.join(__dirname, '..'), target);
   console.log(`AIOX: ${r.copied} files copied, ${r.skipped} existing files kept.`);
 }
-module.exports = { install };
+module.exports = { install, shouldAutoInstall, isUnsafeTarget };
