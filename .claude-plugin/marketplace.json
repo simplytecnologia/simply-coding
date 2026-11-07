@@ -1,0 +1,7 @@
+{
+  "name": "enxuto",
+  "owner": { "name": "Simply Tecnologia" },
+  "plugins": [
+    { "name": "enxuto", "source": "./", "description": "Economia de tokens: Caveman, Ponytail, skills de engenharia e AIOX." }
+  ]
+}
