@@ -4,7 +4,7 @@ const os = require('os');
 const path = require('path');
 const { install } = require('./install-aiox.js');
 
-const t = fs.mkdtempSync(path.join(os.tmpdir(), 'enxuto-'));
+const t = fs.mkdtempSync(path.join(os.tmpdir(), 'simply-coding-'));
 fs.mkdirSync(path.join(t, '.claude/rules'), { recursive: true });
 fs.writeFileSync(path.join(t, '.claude/rules/agent-authority.md'), 'mine');
 const root = path.join(__dirname, '..');
@@ -22,12 +22,12 @@ const { execFileSync } = require('child_process');
 const run = (dir) => execFileSync('node', [path.join(__dirname, 'session-start.js')], {
   encoding: 'utf8', env: { ...process.env, CLAUDE_PROJECT_DIR: dir },
 });
-const repo = fs.mkdtempSync(path.join(os.tmpdir(), 'enxuto-'));
-const plain = fs.mkdtempSync(path.join(os.tmpdir(), 'enxuto-'));
-const optOut = fs.mkdtempSync(path.join(os.tmpdir(), 'enxuto-'));
+const repo = fs.mkdtempSync(path.join(os.tmpdir(), 'simply-coding-'));
+const plain = fs.mkdtempSync(path.join(os.tmpdir(), 'simply-coding-'));
+const optOut = fs.mkdtempSync(path.join(os.tmpdir(), 'simply-coding-'));
 fs.mkdirSync(path.join(repo, '.git'));
 fs.mkdirSync(path.join(optOut, '.git'));
-fs.writeFileSync(path.join(optOut, '.enxuto-sem-aiox'), '');
+fs.writeFileSync(path.join(optOut, '.simply-coding-sem-aiox'), '');
 assert(run(repo).includes('installed AIOX'));
 assert(fs.existsSync(path.join(repo, '.aiox-core/constitution.md')));
 assert(!run(repo).includes('installed AIOX'));

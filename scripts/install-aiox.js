@@ -37,7 +37,7 @@ function install(root, target) {
 function shouldAutoInstall(target) {
   return fs.existsSync(path.join(target, '.git'))
     && !fs.existsSync(path.join(target, '.aiox-core'))
-    && !fs.existsSync(path.join(target, '.enxuto-sem-aiox'));
+    && !fs.existsSync(path.join(target, '.simply-coding-sem-aiox'));
 }
 
 function isUnsafeTarget(target) {

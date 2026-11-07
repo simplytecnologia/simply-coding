@@ -1,12 +1,12 @@
-# Enxuto
+# Simply Coding
 
 Plugin do Claude Code que reduz o gasto de tokens. Reúne Caveman, Ponytail, sete skills de Matt Pocock e o AIOX.
 
 ## Instalar
 
 ```
-/plugin marketplace add simplytecnologia/enxuto
-/plugin install enxuto@enxuto
+/plugin marketplace add simplytecnologia/simply-coding
+/plugin install simply-coding@simply-coding
 ```
 
 Pronto. Caveman e Ponytail passam a valer em toda sessão nova, e o AIOX entra sozinho nos projetos.
@@ -15,8 +15,8 @@ Pronto. Caveman e Ponytail passam a valer em toda sessão nova, e o AIOX entra s
 
 Ao abrir um projeto com Git, o plugin copia o AIOX para a pasta na primeira sessão. Ele nunca sobrescreve arquivos existentes. Os arquivos novos aparecem no Git como alterações do projeto.
 
-- **Pasta sem Git:** nada é instalado. Para instalar mesmo assim, rode `/enxuto:instalar-aiox`.
-- **Para recusar em um projeto:** apague `.aiox-core`, se existir, e crie um arquivo vazio `.enxuto-sem-aiox`.
+- **Pasta sem Git:** nada é instalado. Para instalar mesmo assim, rode `/simply-coding:instalar-aiox`.
+- **Para recusar em um projeto:** apague `.aiox-core`, se existir, e crie um arquivo vazio `.simply-coding-sem-aiox`.
 
 ## O que vem incluído
 
