@@ -13,6 +13,7 @@ assert(first.copied > 100);
 assert.equal(fs.readFileSync(path.join(t, '.claude/rules/agent-authority.md'), 'utf8'), 'mine');
 assert(fs.existsSync(path.join(t, '.aiox-core/constitution.md')));
 assert(fs.readFileSync(path.join(t, '.claude/rules/tool-examples.md'), 'utf8').startsWith('---\npaths: .aiox-core/data/**'));
+assert(fs.readFileSync(path.join(t, '.claude/rules/mcp-usage.md'), 'utf8').startsWith('---\npaths: .mcp.json\n---\n\n#'));
 assert(fs.statSync(path.join(t, '.claude/CLAUDE.md')).size < 500);
 assert.equal(install(root, t).copied, 0);
 fs.rmSync(t, { recursive: true });

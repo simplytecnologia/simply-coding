@@ -2,6 +2,6 @@
   "name": "simply-coding",
   "owner": { "name": "Simply Tecnologia" },
   "plugins": [
-    { "name": "simply-coding", "source": "./", "description": "Economia de tokens: Caveman, Ponytail, skills de engenharia e AIOX." }
+    { "name": "simply-coding", "source": "./", "description": "Método de desenvolvimento com IA: processo AIOX com gates de qualidade, verificação antes do pronto e hábitos enxutos (Caveman, Ponytail)." }
   ]
 }

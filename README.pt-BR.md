@@ -2,9 +2,9 @@
 
 # ⚡ Simply Coding
 
-**Gaste menos tokens. Mantenha a qualidade.**
+**Um método para desenvolver software com IA: processo definido para a qualidade, hábitos enxutos para a eficiência.**
 
-Um plugin do Claude Code, também disponível para Codex, Gemini CLI e Grok Build, que reúne quatro projetos de código aberto em uma só instalação.
+Um plugin do Claude Code, também disponível para Codex, Gemini CLI e Grok Build, que reúne seis projetos de código aberto em uma só instalação.
 
 [![Licença: MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-blue.svg)](LICENSE)
 ![Plugin do Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-8A2BE2)
@@ -18,18 +18,20 @@ Um plugin do Claude Code, também disponível para Codex, Gemini CLI e Grok Buil
 
 ## 👋 Introdução
 
-Sessões de programação com IA ficam caras sem ninguém perceber: respostas longas, soluções maiores que o necessário e instruções carregadas à toa. O Simply Coding corrige esses hábitos com uma instalação, sem configuração.
+A IA escreve código rápido, mas sem um processo ela pula requisitos, declara pronto sem prova e enche o projeto de código que ninguém pediu. O Simply Coding dá ao seu agente um método de trabalho: um processo guiado por histórias que segura a qualidade, mais hábitos que mantêm respostas, mudanças e contexto enxutos. Uma instalação, sem configuração.
 
 ## 📦 O que vem dentro
 
-| Componente | O que faz por você |
-|---|---|
-| 🪨 **[Caveman](https://github.com/JuliusBrussee/caveman)** | Respostas curtas e diretas, sem perder nenhum fato técnico |
-| 🐴 **[Ponytail](https://github.com/DietrichGebert/ponytail)** | A solução mais simples que funciona, com menos código para escrever e revisar |
-| 🧰 **[Skills de Matt Pocock](https://github.com/mattpocock/skills)** | Sete skills de engenharia para depurar, projetar, modelar o domínio e fazer perguntas melhores |
-| 🏗️ **[AIOX](https://github.com/SynkraAI/aiox-core)** | Agentes, tarefas e regras para desenvolvimento guiado por histórias |
+| Componente | Papel | O que faz por você |
+|---|---|---|
+| 🏗️ **[AIOX](https://github.com/SynkraAI/aiox-core)** | Qualidade | Agentes, histórias e gates de qualidade: planejar → construir → revisar |
+| ✅ **[verification-before-completion](https://github.com/obra/superpowers)** | Qualidade | Nada de "pronto" sem prova recente: testes, build, diff |
+| 📏 **[Quality gates](https://github.com/soumatheusgomes/vibe-coding-toolkit)** | Qualidade | JS/TS: regras de lint para tamanho de arquivo, logs e acesso a dados, instaladas e cobradas automaticamente |
+| 🧰 **[Skills de Matt Pocock](https://github.com/mattpocock/skills)** | Qualidade | Depurar, projetar, modelar o domínio e fazer perguntas melhores |
+| 🪨 **[Caveman](https://github.com/JuliusBrussee/caveman)** | Eficiência | Respostas curtas e diretas, sem perder nenhum fato técnico |
+| 🐴 **[Ponytail](https://github.com/DietrichGebert/ponytail)** | Eficiência | A solução mais simples que funciona, com menos código para escrever e revisar |
 
-Além disso, o plugin acrescenta regras de economia a toda sessão e limita três regras do AIOX para que só carreguem quando forem úteis.
+Além disso, o plugin acrescenta regras de sessão enxuta a toda sessão, limita quatro regras do AIOX para que só carreguem quando forem úteis e sugere o [graphify](https://github.com/Graphify-Labs/graphify) e o [rtk](https://github.com/rtk-ai/rtk) quando valem a pena.
 
 ## 🚀 Como usar
 
@@ -47,6 +49,22 @@ Além disso, o plugin acrescenta regras de economia a toda sessão e limita trê
 
 Caveman e Ponytail valem em toda sessão nova. Em projetos com Git, o AIOX é copiado para a pasta na primeira abertura.
 
+### 🧭 Comece aqui
+
+Descreva o que você quer com suas palavras e siga o ciclo:
+
+**Automático em projetos JS/TS:** antes da primeira mudança de código, o Claude instala os quality gates e mede a linha de base. Arquivos com mais de 350 linhas são divididos antes de serem editados, e o Claude não consegue encerrar enquanto os arquivos que ele mudou tiverem erros de lint. Quando uma história fecha com avisos sobrando, o Claude oferece zerá-los.
+
+| Etapa | Comando | O que acontece |
+|---|---|---|
+| 1. Planejar | `/AIOX:agents:pm` | Transforma a ideia em requisitos (PRD) |
+| 2. Histórias | `/AIOX:agents:sm` | Divide o plano em histórias pequenas com critérios de aceite |
+| 3. Construir | `/develop-story` | Implementa uma história e roda os testes |
+| 4. Revisar | `/review-story` | Gate de QA: PASS, CONCERNS ou FAIL |
+| 5. Fechar | `/close-story` | Finaliza a história aprovada no QA |
+
+Correção pequena? Pule o ciclo e peça direto. Bug difícil? Peça ao Claude para diagnosticar.
+
 > [!NOTE]
 > Os arquivos novos do AIOX aparecem como alterações no Git. Revise antes de fazer commit. Arquivos existentes nunca são sobrescritos.
 
@@ -58,6 +76,9 @@ Caveman e Ponytail valem em toda sessão nova. Em projetos com Git, o AIOX é co
 | Instalar o AIOX em uma pasta sem Git | Rode `/simply-coding:instalar-aiox` |
 | Deixar o AIOX fora de um projeto | Apague `.aiox-core`, se existir, e crie um arquivo vazio `.simply-coding-sem-aiox` |
 | Evitar skills duplicadas | Desinstale plugins avulsos de Caveman ou Ponytail |
+| Ler repositórios grandes com menos tokens (opcional) | Instale o [graphify](https://github.com/Graphify-Labs/graphify) (`pipx install graphifyy && graphify install`, exige Python 3.10+) e rode `/graphify .` uma vez. O Claude sugere sozinho em repositórios Git com 50+ arquivos de código/docs; crie um `.simply-coding-sem-graphify` vazio para parar |
+| Desligar os quality gates em um projeto | Crie um arquivo vazio `.simply-coding-sem-quality-gates` |
+| Reduzir a saída de comandos: testes, builds, git (opcional) | Instale o [rtk](https://github.com/rtk-ai/rtk) (`winget install rtk-ai.rtk` ou `brew install rtk`, depois `rtk init -g`). O Claude sugere sozinho enquanto não estiver instalado; crie um `.simply-coding-sem-rtk` vazio para parar |
 
 A CLI `aiox` e os hooks do AIOX não estão incluídos.
 
@@ -80,13 +101,16 @@ O comando copia as skills e o AIOX e acrescenta as regras de economia ao `AGENTS
 
 ## 📈 Resultados esperados
 
+- ✅ **Processo definido:** toda mudança passa por história, implementação e gate de QA.
+- ✅ **Gates mecânicos:** erros de lint bloqueiam o "pronto" em projetos JS/TS, sem depender de julgamento.
+- ✅ **Prova antes do "pronto":** testes e builds são rodados, não presumidos.
 - ✅ **Respostas mais curtas:** menos enrolação, com comandos, caminhos e erros mantidos exatos.
 - ✅ **Mudanças menores:** código existente e recursos nativos vêm antes de código novo.
 - ✅ **Contexto mais leve:** skills e regras limitadas carregam quando são necessárias.
 - ✅ **Mesmo nível de segurança:** escopo pedido, segurança, acessibilidade e testes continuam valendo.
 
 > [!IMPORTANT]
-> A economia deste plugin ainda não foi medida, então não publicamos percentual. O resultado depende do seu projeto e do seu jeito de trabalhar.
+> A qualidade e a economia deste plugin ainda não foram medidas, então não publicamos percentual. O resultado depende do seu projeto e do seu jeito de trabalhar.
 
 ## 🙏 Créditos e licença
 

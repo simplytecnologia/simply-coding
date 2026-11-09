@@ -7,6 +7,7 @@ const PATH_RULES = {
   'handoff-consolidation.md': '.aiox/handoffs/**',
   'workflow-execution.md': '.aiox-core/development/workflows/**',
   'tool-examples.md': '.aiox-core/data/**',
+  'mcp-usage.md': '.mcp.json', // upstream loads it everywhere; it only matters when configuring MCP
 };
 
 function copyNew(from, to, result) {
@@ -19,7 +20,10 @@ function copyNew(from, to, result) {
   fs.copyFileSync(from, to);
   result.copied++;
   const pattern = path.basename(path.dirname(to)) === 'rules' && PATH_RULES[path.basename(to)];
-  if (pattern) fs.writeFileSync(to, `---\npaths: ${pattern}\n---\n\n${fs.readFileSync(to, 'utf8')}`);
+  if (pattern) {
+    const body = fs.readFileSync(to, 'utf8').replace(/^---\r?\n[\s\S]*?\r?\n---\s*/, '');
+    fs.writeFileSync(to, `---\npaths: ${pattern}\n---\n\n${body}`);
+  }
 }
 
 function install(root, target) {

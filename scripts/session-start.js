@@ -16,3 +16,8 @@ try {
 } catch (error) {
   process.stdout.write(`\nSimply Coding could not install AIOX: ${error.message}. Tell the user and suggest /simply-coding:instalar-aiox.\n`);
 }
+
+try {
+  const target = path.resolve(process.env.CLAUDE_PROJECT_DIR || process.cwd());
+  if (!isUnsafeTarget(target)) process.stdout.write(require('./advice.js').advice(target));
+} catch { /* advice is optional */ }

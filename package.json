@@ -1,7 +1,7 @@
 {
   "name": "simply-coding",
   "version": "0.1.0",
-  "description": "Token-saving setup for AI coding tools.",
+  "description": "AI software development method: AIOX quality process plus lean, token-efficient habits.",
   "license": "MIT",
   "bin": { "simply-coding": "scripts/install-cli.js" }
 }

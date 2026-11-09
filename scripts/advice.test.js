@@ -1,0 +1,24 @@
+const assert = require('assert');
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
+const { execFileSync } = require('child_process');
+const { graphifyAdvice, rtkAdvice, MIN_FILES } = require('./advice.js');
+
+const t = fs.mkdtempSync(path.join(os.tmpdir(), 'simply-coding-'));
+execFileSync('git', ['init', '-q'], { cwd: t });
+const add = (n) => { for (let i = 0; i < n; i++) fs.writeFileSync(path.join(t, `f${i}.js`), ''); execFileSync('git', ['add', '.'], { cwd: t }); };
+add(MIN_FILES - 1);
+assert.equal(graphifyAdvice(t, () => true), '');
+add(MIN_FILES);
+assert.match(graphifyAdvice(t, () => true), /run.*\/graphify \./);
+assert.match(graphifyAdvice(t, () => false), /pipx install graphifyy/);
+fs.mkdirSync(path.join(t, '.aiox-core'));
+fs.writeFileSync(path.join(t, '.simply-coding-sem-graphify'), '');
+assert.equal(graphifyAdvice(t, () => true), '');
+assert.match(rtkAdvice(t, () => false), /rtk init -g/);
+assert.equal(rtkAdvice(t, () => true), '');
+fs.writeFileSync(path.join(t, '.simply-coding-sem-rtk'), '');
+assert.equal(rtkAdvice(t, () => false), '');
+fs.rmSync(t, { recursive: true, force: true });
+console.log('ok');
