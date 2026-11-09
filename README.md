@@ -68,6 +68,22 @@ Small fix? Skip the cycle and just ask. Hard bug? Ask Claude to diagnose it.
 > [!NOTE]
 > The new AIOX files show up as changes in Git. Review them before committing. Existing files are never overwritten.
 
+### 🧪 Test like a real user (on demand)
+
+A black-box tester: it reads the repository to learn what to test, then uses the app only through the browser (isolated Chromium), as a user would. It runs only when you call it, writes nothing to the project and fixes nothing: it delivers a report.
+
+| Command | Scope |
+|---|---|
+| `/simply-coding:teste-geral` | The whole app |
+| `/simply-coding:teste-diff` | Only what changed since the last test |
+| `/simply-coding:teste customers screen` | The screen or flow you name |
+
+The report is written as `report.md` and `report.html` under `~/.simply-coding/qa/<project>/runs/`, with findings by severity, reproduction steps, screenshots, measured times and a suggested fix with file and line.
+
+- **Target:** `localhost` or an environment you confirm is not production. Production is refused.
+- **Login:** the browser opens visible and you type user and password yourself. The tester never sees or stores the password, and the session is gone when the browser closes.
+- **Requirement:** Node.js. The browser comes from [playwright-cli](https://github.com/microsoft/playwright-cli), downloaded on first use.
+
 <details>
 <summary><b>Options and special cases</b></summary>
 

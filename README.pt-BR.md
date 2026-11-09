@@ -68,6 +68,22 @@ Correção pequena? Pule o ciclo e peça direto. Bug difícil? Peça ao Claude p
 > [!NOTE]
 > Os arquivos novos do AIOX aparecem como alterações no Git. Revise antes de fazer commit. Arquivos existentes nunca são sobrescritos.
 
+### 🧪 Testar como um usuário real (sob demanda)
+
+Um testador caixa-preta: lê o repositório para saber o que testar, depois usa o app só pelo navegador (Chromium isolado), como um usuário faria. Só roda quando você chama, não grava nada no projeto e não corrige nada: entrega um relatório.
+
+| Comando | Escopo |
+|---|---|
+| `/simply-coding:teste-geral` | O app inteiro |
+| `/simply-coding:teste-diff` | Só o que mudou desde o último teste |
+| `/simply-coding:teste tela de clientes` | A tela ou o fluxo que você indicar |
+
+O relatório sai em `report.md` e `report.html`, em `~/.simply-coding/qa/<projeto>/runs/`, com achados por severidade, passos de reprodução, screenshots, tempos medidos e a correção sugerida com arquivo e linha.
+
+- **Alvo:** `localhost` ou um ambiente que você confirmar que não é produção. Produção é recusada.
+- **Login:** o navegador abre visível e você mesmo digita usuário e senha. O testador não vê nem guarda a senha, e a sessão some quando o navegador fecha.
+- **Requisito:** Node.js. O navegador vem do [playwright-cli](https://github.com/microsoft/playwright-cli), baixado no primeiro uso.
+
 <details>
 <summary><b>Opções e casos especiais</b></summary>
 
